@@ -1,7 +1,16 @@
 class Directory
-  attr_reader :name
+  attr_reader :dir_name
   def test_constructor
-  def initialize(header, format)
-    @name = name
+    return
+  end
+  def initialize(dir_name)
+    @dir_name = dir_name
+  end
+  def ==(target)
+    @dir_name == target.dir_name
+  end
+
+  def make
+    Dir.mkdir(@name , 0700)
   end
 end

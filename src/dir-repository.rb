@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
+require_relative '../src/directory'
+
 class DirRepository
   # 仕様を見てコードを追加
-  attr_reader :dir_name, :header, :format, :max
-  def test_constructor
+  attr_reader :command
   # 仕様を見てコードを追加
-  def initialize(dir_name, header, format, max)
-    @dir_name = dir_name
+  def initialize(command)
+    @command = command
     @header = header
     @format = format
     @max = max
   end
-
-    def test_create_directories
-    dir_repository = DirRepository.new("header", "format", )
-    # mapメソッドを使うともっと楽に書けるぞ
-    assert_equal [Dir.new("Ex01"), Dir.new("Ex02"), 
-      Directory.new("Ex03"), Directory.new("Ex04"), Directory.new("Ex05")], dir_generator.create_directories
-
+  
+  def create_directories
+    (1..@max).map{|n| Directory.new(@command.header + sprintf("%0#{@format}d",n))}
+  end
+  
   def make
+    create_directories.each{|dir| dir.make}
   end
 end
